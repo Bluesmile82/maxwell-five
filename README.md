@@ -1,4 +1,4 @@
-# Maxwell Five — maxwelfive.com
+# Maxwell Five — maxwellfive.com
 
 Static site, no build step: `index.html`, `gracias.html`, `styles.css`, `img/`.
 
