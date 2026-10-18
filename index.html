@@ -1,0 +1,570 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Maxwell Five · Blues callejero de Chicago desde Madrid</title>
+    <meta name="description" content="Maxwell Five es una banda de blues de Madrid: un homenaje al blues callejero de Chicago y al mítico mercado de Maxwell Street. Guitarras, armónica y mucho groove." />
+    <link rel="canonical" href="https://maxwelfive.com/" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#17120e" />
+    <meta name="author" content="Maxwell Five" />
+    <meta name="keywords" content="Maxwell Five, blues, Chicago blues, banda de blues Madrid, armónica, conciertos Madrid, Maxwell Street" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Maxwell Five" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:title" content="Maxwell Five · Blues callejero de Chicago desde Madrid" />
+    <meta property="og:description" content="Cinco enamorados del blues rindiendo homenaje a Maxwell Street. Ahora están juntos para daros un poquito de blues." />
+    <meta property="og:url" content="https://maxwelfive.com/" />
+    <meta property="og:image" content="https://maxwelfive.com/img/og.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bebas+Neue&family=Lora:ital,wght@0,400;0,700;1,400&family=Yellowtail&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "MusicGroup",
+        "name": "Maxwell Five",
+        "genre": ["Blues", "Chicago blues"],
+        "url": "https://maxwelfive.com",
+        "image": "https://maxwelfive.com/img/og.jpg",
+        "foundingDate": "2025",
+        "foundingLocation": { "@type": "Place", "name": "Madrid, España" },
+        "member": [
+          { "@type": "Person", "name": "Álvaro Leal", "roleName": "Guitarra y voz" },
+          { "@type": "Person", "name": "Gabi Torné", "roleName": "Guitarra" },
+          { "@type": "Person", "name": "Larry Mendoza", "roleName": "Armónica" },
+          { "@type": "Person", "name": "Chema Contreras", "roleName": "Bajo" },
+          { "@type": "Person", "name": "Elvira Sodalita", "roleName": "Batería" }
+        ],
+        "sameAs": [
+          "https://www.instagram.com/maxwell.five/",
+          "https://www.youtube.com/@MaxwellFivebluesband"
+        ]
+      }
+    </script>
+
+    <style>
+      /* Hero — the band's Maxwell Street postcard, framed like the real thing */
+      .hero {
+        background: var(--halftone), var(--ink);
+        padding: clamp(1.5rem, 5vw, 3.5rem) 0 clamp(2.5rem, 6vw, 4rem);
+        overflow-x: clip;
+        text-align: center;
+      }
+      .postcard {
+        margin: 0 auto;
+        width: min(1100px, 100% - 32px);
+        border: clamp(6px, 1.4vw, 14px) solid #f7efdc;
+        box-shadow: 0 24px 50px rgba(0, 0, 0, 0.6);
+        transform: rotate(-1.2deg);
+      }
+      .postcard img {
+        width: 100%;
+        height: auto;
+        filter: sepia(0.15) contrast(1.05);
+      }
+      .marquee {
+        margin: clamp(2rem, 5vw, 3rem) auto 0;
+        width: min(760px, 100% - 32px);
+        padding: 1.1rem 1rem;
+        background:
+          radial-gradient(circle, var(--mustard) 3px, transparent 3.6px) top center / 20px 14px repeat-x,
+          radial-gradient(circle, var(--mustard) 3px, transparent 3.6px) bottom center / 20px 14px repeat-x,
+          var(--red);
+        border: 3px solid var(--mustard);
+        color: var(--paper);
+        font-family: var(--font-label);
+        font-size: clamp(1.35rem, 4.5vw, 2.2rem);
+        letter-spacing: 0.14em;
+        line-height: 1.2;
+      }
+      .hero__cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+        margin-top: 2rem;
+        padding-inline: 16px;
+      }
+      .hero .btn {
+        border-color: var(--mustard);
+        box-shadow: 4px 4px 0 var(--mustard);
+      }
+
+      /* Música */
+      lite-youtube {
+        display: block;
+        position: relative;
+        width: min(100%, 820px);
+        margin: 0 auto;
+        aspect-ratio: 16 / 9;
+        background-color: #000;
+        background-size: cover;
+        background-position: center;
+        border: 6px solid var(--ink);
+        box-shadow: 8px 8px 0 var(--red);
+        overflow: hidden;
+        cursor: pointer;
+        filter: sepia(0.2);
+      }
+      .lyt-play {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+        cursor: pointer;
+        background: rgba(23, 18, 14, 0.3);
+      }
+      .lyt-play::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 84px;
+        height: 84px;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background: var(--red);
+        border: 4px solid var(--mustard);
+      }
+      .lyt-play::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-35%, -50%);
+        border-style: solid;
+        border-width: 16px 0 16px 26px;
+        border-color: transparent transparent transparent var(--paper);
+      }
+      .lyt-play:hover {
+        background: rgba(23, 18, 14, 0.1);
+      }
+      .video-caption {
+        margin: 1.6rem 0 0;
+        text-align: center;
+        font-family: var(--font-label);
+        font-size: 1.4rem;
+        letter-spacing: 0.08em;
+      }
+      .video-caption em {
+        font-family: var(--font-body);
+        font-size: 1rem;
+        letter-spacing: 0;
+        display: block;
+      }
+      .center {
+        text-align: center;
+        margin-top: 1.75rem;
+      }
+
+      /* Banda — poster + bio */
+      .bio-grid {
+        display: grid;
+        gap: clamp(2rem, 5vw, 4rem);
+        align-items: center;
+      }
+      @media (min-width: 780px) {
+        .bio-grid {
+          grid-template-columns: minmax(240px, 340px) 1fr;
+        }
+      }
+      .poster {
+        position: relative;
+        margin: 0 auto;
+        max-width: 340px;
+        transform: rotate(2deg);
+      }
+      .poster img {
+        border: 8px solid #f7efdc;
+        box-shadow: 0 16px 34px rgba(23, 18, 14, 0.35);
+      }
+      .poster::before {
+        /* strip of tape */
+        content: '';
+        position: absolute;
+        top: -14px;
+        left: 50%;
+        width: 120px;
+        height: 30px;
+        transform: translateX(-50%) rotate(-4deg);
+        background: rgba(242, 183, 5, 0.65);
+        z-index: 1;
+      }
+      .bio p {
+        margin: 0 0 1.2rem;
+      }
+      .quote {
+        font-family: var(--font-script);
+        font-size: clamp(1.9rem, 5vw, 2.7rem);
+        line-height: 1.2;
+        color: var(--red);
+        margin: 1.5rem 0 0 !important;
+      }
+
+      /* Members as 45 rpm records */
+      .members {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: clamp(1.5rem, 4vw, 2.5rem);
+        margin: clamp(3.5rem, 8vw, 5rem) 0;
+        padding: 0;
+        list-style: none;
+      }
+      .disc {
+        width: 200px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background:
+          radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.14), transparent 40%),
+          repeating-radial-gradient(circle, #111 0 2px, #222 2px 4px);
+        box-shadow: 0 10px 22px rgba(23, 18, 14, 0.35);
+        transition: transform 0.4s ease;
+      }
+      .disc:hover {
+        transform: rotate(-10deg);
+      }
+      .disc__label {
+        position: relative;
+        width: 66%;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: var(--red);
+        color: var(--paper);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding-top: 13%;
+        box-shadow: inset 0 0 0 3px rgba(0, 0, 0, 0.15);
+      }
+      .disc__label::after {
+        /* spindle hole */
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 8px;
+        height: 8px;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background: var(--ink);
+      }
+      .disc:nth-child(3n + 2) .disc__label {
+        background: var(--mustard);
+        color: var(--ink);
+      }
+      .disc:nth-child(3n + 3) .disc__label {
+        background: var(--paper);
+        color: var(--red);
+      }
+      .disc__name {
+        font-family: var(--font-display);
+        font-size: 0.95rem;
+        line-height: 1.05;
+        max-width: 80%;
+        min-height: 2.1em;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+      }
+      .disc__role {
+        margin-top: 1.7rem;
+        font-family: var(--font-label);
+        font-size: 1rem;
+        letter-spacing: 0.06em;
+      }
+
+      @media (max-width: 480px) {
+        .disc {
+          width: 150px;
+        }
+        .disc__name {
+          font-size: 0.78rem;
+        }
+        .disc__role {
+          font-size: 0.85rem;
+          margin-top: 1.25rem;
+        }
+      }
+
+      /* Maxwell Street — newspaper column with drop cap */
+      .story {
+        border-block: 3px double var(--ink);
+        padding: 2rem 0 0.5rem;
+      }
+      .story h3 {
+        font-size: clamp(1.6rem, 4vw, 2.2rem);
+        text-align: center;
+        text-transform: uppercase;
+        margin: 0 0 1.25rem;
+      }
+      .story__cols {
+        columns: 2 320px;
+        column-gap: 3rem;
+        column-rule: 1px solid rgba(23, 18, 14, 0.25);
+      }
+      .story__cols p {
+        margin: 0 0 1.1rem;
+      }
+      .story__cols p:first-child::first-letter {
+        float: left;
+        font-family: var(--font-display);
+        font-size: 3.6em;
+        line-height: 0.85;
+        padding: 0.08em 0.1em 0 0;
+        color: var(--red);
+      }
+      .bands {
+        margin: 1.75rem 0 0;
+        text-align: center;
+        font-family: var(--font-label);
+        font-size: 1.3rem;
+        letter-spacing: 0.08em;
+      }
+      .bands span {
+        color: var(--red);
+      }
+
+      /* Contacto */
+      .contact {
+        max-width: 640px;
+        text-align: center;
+      }
+      .contact__lead {
+        margin: 0 auto 2rem;
+        max-width: 46ch;
+      }
+      .contact__form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.1rem;
+        text-align: left;
+      }
+      .contact__form label {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+        font-family: var(--font-label);
+        font-size: 1.2rem;
+        letter-spacing: 0.08em;
+      }
+      .contact__form input,
+      .contact__form textarea {
+        font: inherit;
+        font-family: var(--font-body);
+        font-size: 1rem;
+        letter-spacing: 0;
+        padding: 0.75rem 0.9rem;
+        border: 3px solid var(--mustard);
+        border-radius: 0;
+        background: var(--paper);
+        color: var(--ink);
+      }
+      .contact__form input:focus-visible,
+      .contact__form textarea:focus-visible {
+        outline: 3px solid var(--red);
+        outline-offset: 2px;
+      }
+      .contact__form textarea {
+        resize: vertical;
+      }
+      .contact__form button {
+        align-self: center;
+        margin-top: 0.5rem;
+      }
+      .hidden-field {
+        position: absolute;
+        left: -9999px;
+      }
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HERO -->
+    <header class="hero">
+      <h1 class="visually-hidden">Maxwell Five</h1>
+      <figure class="postcard">
+        <img
+          src="/img/maxwell-street.jpg"
+          alt="Maxwell Five, sobre una postal coloreada del mercado de Maxwell Street en Chicago"
+          width="1920"
+          height="1080"
+          fetchpriority="high"
+        />
+      </figure>
+      <p class="section-title section--dark">Blues callejero de Chicago</p>
+
+      <div class="hero__cta">
+        <a class="btn btn--red" href="#musica">▶ Escuchar</a>
+        <a class="btn btn--mustard" href="#contacto">Contrataciones</a>
+      </div>
+    </header>
+
+    <main>
+      <!-- MÚSICA -->
+      <section class="section paper" id="musica">
+        <div class="wrap">
+          <p class="eyebrow">En directo</p>
+          <h2 class="section-title"><span>Música</span></h2>
+          <lite-youtube videoid="FLHVd0pu-nc">
+            <button type="button" class="lyt-play" aria-label="Reproducir Natural Ball de Maxwell Five"></button>
+          </lite-youtube>
+          <p class="video-caption">
+            Natural Ball
+            <em>Homenaje de Maxwell Five a Albert King en La Iglesuela</em>
+          </p>
+          <p class="center">
+            <a class="btn btn--red" href="https://www.youtube.com/@MaxwellFivebluesband" target="_blank" rel="noopener">Más vídeos en YouTube</a>
+          </p>
+        </div>
+      </section>
+
+      <!-- BANDA -->
+      <section class="section paper" id="banda" style="padding-top: 0">
+        <div class="wrap">
+          <p class="eyebrow">Revueltos y ¡al fin juntos!</p>
+          <h2 class="section-title"><span>La banda</span></h2>
+
+          <div class="bio-grid">
+            <figure class="poster">
+              <img src="/img/cartel-lavadora.jpg" alt="Cartel de Maxwell Five: un gatito negro asomando de una lavadora" width="675" height="900" loading="lazy" />
+            </figure>
+            <div class="bio">
+              <p>
+                Maxwell Five es una declaración de intenciones desde el primer momento,
+                honrando en su nombre a la mítica calle de Chicago en la que el blues se
+                hizo protagonista. Blues es lo que les gusta y lo que os traen cinco
+                enamorados de esta música que se han ido encontrando a lo largo de 20 años
+                en la escena madrileña, formando parte de distintas bandas, pisando varios
+                escenarios y compartiendo muchas jams.
+              </p>
+              <p>
+                Buscan el groove con sana obsesión y suenan aún mejor cuando sienten el
+                calor de su público, el verdadero motor que alimenta su música.
+              </p>
+              <p class="quote">
+                Ahora están juntos para, como siempre dice su frontman, daros un poquito
+                de blues…
+              </p>
+            </div>
+          </div>
+
+          <ul class="members" aria-label="Componentes">
+            <li class="disc"><div class="disc__label"><span class="disc__name">Álvaro Leal</span><span class="disc__role">Guitarra y voz</span></div></li>
+            <li class="disc"><div class="disc__label"><span class="disc__name">Gabi Torné</span><span class="disc__role">Guitarra</span></div></li>
+            <li class="disc"><div class="disc__label"><span class="disc__name">Larry Mendoza</span><span class="disc__role">Armónica</span></div></li>
+            <li class="disc"><div class="disc__label"><span class="disc__name">Chema Contreras</span><span class="disc__role">Bajo</span></div></li>
+            <li class="disc"><div class="disc__label"><span class="disc__name">Elvira Sodalita</span><span class="disc__role">Batería</span></div></li>
+          </ul>
+
+          <article class="story">
+            <h3>El espíritu de Maxwell Street</h3>
+            <div class="story__cols">
+              <p>
+                En el mercado de Maxwell Street, en Chicago, para muchos cuna del blues,
+                se reunían los músicos para improvisar despreocupadamente y la gente a su
+                alrededor bailaba sin descanso. Ese es el espíritu que Maxwell Five
+                pretende transmitir con su música.
+              </p>
+              <p>
+                La banda se forma a finales de 2025 uniendo a los Whingers, grupo con
+                experiencia en el blues eléctrico, con el armonicista y el cantante de
+                Blues Cavaliers, trío acústico de estilo delta blues. De esa fusión surge
+                un conjunto de viejos conocidos que se embarca en un homenaje al blues y,
+                en especial, al blues callejero de Chicago.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- CONTACTO — Netlify Forms with honeypot + reCAPTCHA -->
+      <section class="section section--dark" id="contacto">
+        <div class="wrap contact">
+          <p class="eyebrow">Contrataciones</p>
+          <h2 class="section-title"><span>Contacto</span></h2>
+          <p class="contact__lead">
+            ¿Un concierto, una fiesta, un festival o una jam? Cuéntanos y llevamos el blues.
+          </p>
+          <form name="contacto" method="POST" action="/gracias" data-netlify="true" netlify-honeypot="bot-field" class="contact__form">
+            <input type="hidden" name="form-name" value="contacto" />
+            <p class="hidden-field">
+              <label>No rellenar: <input name="bot-field" /></label>
+            </p>
+            <label>
+              <span>Nombre</span>
+              <input type="text" name="nombre" required autocomplete="name" />
+            </label>
+            <label>
+              <span>Email</span>
+              <input type="email" name="email" required autocomplete="email" />
+            </label>
+            <label>
+              <span>Mensaje</span>
+              <textarea name="mensaje" rows="5" required></textarea>
+            </label>
+            <div data-netlify-recaptcha="true"></div>
+            <button type="submit" class="btn btn--red">Enviar</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <a href="/" class="site-footer__brand">Maxwell Five</a>
+        <nav class="site-footer__social" aria-label="Redes sociales">
+          <a class="icon-btn" href="https://www.instagram.com/maxwell.five/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a class="icon-btn" href="https://www.youtube.com/@MaxwellFivebluesband" target="_blank" rel="noopener" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+          </a>
+        </nav>
+        <p class="site-footer__copy">Banda de blues de Madrid</p>
+      </div>
+    </footer>
+
+    <!-- lite-youtube facade: loads the real player only on click -->
+    <script>
+      class LiteYT extends HTMLElement {
+        connectedCallback() {
+          const id = this.getAttribute('videoid');
+          this.style.backgroundImage = `url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)`;
+          this.addEventListener('click', () => this.activate(id), { once: true });
+        }
+        activate(id) {
+          const iframe = document.createElement('iframe');
+          iframe.setAttribute('allowfullscreen', '');
+          iframe.setAttribute('allow', 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture');
+          iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1`;
+          iframe.title = 'Maxwell Five en YouTube';
+          iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0';
+          this.style.filter = 'none';
+          this.replaceChildren(iframe);
+        }
+      }
+      customElements.define('lite-youtube', LiteYT);
+    </script>
+  </body>
+</html>
