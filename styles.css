@@ -208,11 +208,15 @@ h3 {
 
 /* Focus + motion --------------------------------------------------- */
 
+/* Red ring on paper (5.3:1); mustard on dark areas, where red is too faint */
 a:focus-visible,
 .btn:focus-visible,
 button:focus-visible {
-  outline: 3px solid var(--mustard);
+  outline: 3px solid var(--red);
   outline-offset: 3px;
+}
+:is(.hero, .section--dark, .site-footer) :is(a, .btn, button):focus-visible {
+  outline-color: var(--mustard);
 }
 
 @media (prefers-reduced-motion: reduce) {

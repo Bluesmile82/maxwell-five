@@ -10,6 +10,7 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="theme-color" content="#17120e" />
     <meta name="author" content="Maxwell Five" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="keywords" content="Maxwell Five, blues, Chicago blues, banda de blues Madrid, armónica, conciertos Madrid, Maxwell Street" />
 
     <meta property="og:type" content="website" />
@@ -21,35 +22,109 @@
     <meta property="og:image" content="https://maxwellfive.com/img/og.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Maxwell Five sobre una postal del mercado de Maxwell Street, Chicago" />
     <meta name="twitter:card" content="summary_large_image" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bebas+Neue&family=Lora:ital,wght@0,400;0,700;1,400&family=Yellowtail&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/styles.css" />
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="Resumen para LLMs" />
 
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "MusicGroup",
-        "name": "Maxwell Five",
-        "genre": ["Blues", "Chicago blues"],
-        "url": "https://maxwellfive.com",
-        "image": "https://maxwellfive.com/img/og.jpg",
-        "foundingDate": "2025",
-        "foundingLocation": { "@type": "Place", "name": "Madrid, España" },
-        "member": [
-          { "@type": "Person", "name": "Álvaro Leal", "roleName": "Guitarra y voz" },
-          { "@type": "Person", "name": "Gabi Torné", "roleName": "Guitarra" },
-          { "@type": "Person", "name": "Larry Mendoza", "roleName": "Armónica" },
-          { "@type": "Person", "name": "Chema Contreras", "roleName": "Bajo" },
-          { "@type": "Person", "name": "Elvira Sodalita", "roleName": "Batería" }
-        ],
-        "sameAs": [
-          "https://www.instagram.com/maxwell.five/",
-          "https://www.youtube.com/@MaxwellFivebluesband"
-        ]
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "MusicGroup",
+      "@id": "https://maxwellfive.com/#band",
+      "name": "Maxwell Five",
+      "description": "Banda de blues de Madrid formada a finales de 2025. Un homenaje al blues callejero de Chicago y al mercado de Maxwell Street.",
+      "genre": [
+        "Blues",
+        "Chicago blues",
+        "Delta blues"
+      ],
+      "url": "https://maxwellfive.com/",
+      "image": "https://maxwellfive.com/img/og.jpg",
+      "logo": "https://maxwellfive.com/apple-touch-icon.png",
+      "foundingDate": "2025",
+      "foundingLocation": {
+        "@type": "Place",
+        "name": "Madrid, España"
+      },
+      "areaServed": "España",
+      "member": [
+        {
+          "@type": "OrganizationRole",
+          "roleName": "Guitarra y voz",
+          "member": {
+            "@type": "Person",
+            "name": "Álvaro Leal"
+          }
+        },
+        {
+          "@type": "OrganizationRole",
+          "roleName": "Guitarra",
+          "member": {
+            "@type": "Person",
+            "name": "Gabi Torné"
+          }
+        },
+        {
+          "@type": "OrganizationRole",
+          "roleName": "Armónica",
+          "member": {
+            "@type": "Person",
+            "name": "Larry Mendoza"
+          }
+        },
+        {
+          "@type": "OrganizationRole",
+          "roleName": "Bajo",
+          "member": {
+            "@type": "Person",
+            "name": "Chema Contreras"
+          }
+        },
+        {
+          "@type": "OrganizationRole",
+          "roleName": "Batería",
+          "member": {
+            "@type": "Person",
+            "name": "Elvira Sodalita"
+          }
+        }
+      ],
+      "sameAs": [
+        "https://www.instagram.com/maxwell.five/",
+        "https://www.youtube.com/@MaxwellFivebluesband"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://maxwellfive.com/#website",
+      "url": "https://maxwellfive.com/",
+      "name": "Maxwell Five",
+      "inLanguage": "es",
+      "publisher": {
+        "@id": "https://maxwellfive.com/#band"
       }
+    },
+    {
+      "@type": "VideoObject",
+      "name": "Natural Ball — Maxwell Five",
+      "description": "Homenaje de Maxwell Five a Albert King en La Iglesuela.",
+      "uploadDate": "2026-10-18T07:08:27+00:00",
+      "thumbnailUrl": "https://i.ytimg.com/vi/FLHVd0pu-nc/hqdefault.jpg",
+      "embedUrl": "https://www.youtube.com/embed/FLHVd0pu-nc",
+      "url": "https://www.youtube.com/watch?v=FLHVd0pu-nc",
+      "creator": {
+        "@id": "https://maxwellfive.com/#band"
+      }
+    }
+  ]
+}
     </script>
 
     <style>
@@ -138,6 +213,11 @@
         border-style: solid;
         border-width: 16px 0 16px 26px;
         border-color: transparent transparent transparent var(--paper);
+      }
+      .lyt-play:focus-visible {
+        /* the facade clips overflow, so draw the ring inside, mustard over the dark thumbnail */
+        outline-color: var(--mustard);
+        outline-offset: -8px;
       }
       .lyt-play:hover {
         background: rgba(23, 18, 14, 0.1);
@@ -399,7 +479,7 @@
       <p class="section-title tagline"><span>Blues callejero de Chicago</span></p>
 
       <div class="hero__cta">
-        <a class="btn btn--red" href="#musica">▶ Escuchar</a>
+        <a class="btn btn--red" href="#musica"><span aria-hidden="true">▶</span> Escuchar</a>
         <a class="btn btn--mustard" href="#contacto">Contrataciones</a>
       </div>
     </header>
